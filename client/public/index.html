@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#BB002D" />
+  <meta name="description" content="AI-MMI Immigration Assistant - Your smart migration helper" />
+  
+  <title>AI-MMI Immigration Assistant</title>
+  
+  <!-- Favicon using your original logo -->
+  <link rel="icon" href="https://i.ibb.co/pjR8wxhR/ai-mmi-logo-dark-background.png" />
+  
+  <!-- Preload your logo assets -->
+  <link rel="preload" href="https://i.ibb.co/pjR8wxhR/ai-mmi-logo-dark-background.png" as="image">
+  <link rel="preload" href="https://i.ibb.co/tMDdT4bd/icon-lang.png" as="image">
+  <link rel="preload" href="https://i.ibb.co/3mmnZvWc/icon-member.png" as="image">
+  <link rel="preload" href="https://i.ibb.co/NdFXvqSk/icon-menu.png" as="image">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Preload marked.js for markdown rendering -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/marked/marked.min.js" as="script">
+  
+  <!-- Mobile App Capabilities -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="AI-MMI" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  
+  <style>
+    /* Initial loading styles */
+    body {
+      margin: 0;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+    
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Loading animation */
+    .app-loading {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
+    }
+    .app-loading-logo {
+      height: 80px;
+      width: 80px;
+      object-fit: contain;
+    }
+    .app-loading-spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #BB002D;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading placeholder (replaced by React) -->
+  <div id="root">
+    <div class="app-loading">
+      <img src="https://i.ibb.co/pjR8wxhR/ai-mmi-logo-dark-background.png" 
+           alt="AI-MMI Logo" 
+           class="app-loading-logo">
+      <div class="app-loading-spinner"></div>
+    </div>
+  </div>
+  
+  <!-- Marked.js for markdown rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <!-- PDF.js for document rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+  </script>
+  
+  <!-- Mammoth.js for Word document parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.0/mammoth.browser.min.js"></script>
+  
+  <!-- Tesseract.js for OCR (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+</body>
+</html>
