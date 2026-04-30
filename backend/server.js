@@ -36,7 +36,7 @@ const connectDB = async () => {
       await mongoose.connect(process.env.MONGO_URI);
       console.log('✅ Connected to MongoDB Atlas');
     } else {
-      await mongoose.connect('mongodb://127.0.0.1:27017/ai-mmi');
+      await mongoose.connect('mongodb://127.0.0.1:27017/migration-ai');
       console.log('✅ Connected to local MongoDB');
     }
   } catch (error) {
@@ -376,7 +376,7 @@ async function generateAIResponse(userId, prompt, filesContent = '', useSerpApi 
       apiKey: process.env.OPENROUTER_API_KEY,
       defaultHeaders: {
         "HTTP-Referer": process.env.FRONTEND_URL || "http://localhost:3000",
-        "X-Title": "AI-MMI Immigration Assistant"
+        "X-Title": "Migration AI Immigration Assistant"
       }
     });
 
@@ -550,7 +550,7 @@ app.get('/api/payment/initiate', auth, async (req, res) => {
       plan,
       price,
       currency: 'AUD',
-      description: `AI-MMI ${plan} Plan Subscription`,
+      description: `Migration AI ${plan} Plan Subscription`,
       successUrl: `${process.env.FRONTEND_URL}/payment-success?paymentId=${paymentId}&plan=${plan}`,
       cancelUrl: `${process.env.FRONTEND_URL}/payment-cancel`
     });

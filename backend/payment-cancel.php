@@ -9,7 +9,7 @@ unset($_SESSION['plan']);
 unset($_SESSION['payment_id']);
 unset($_SESSION['amount']);
 
-// Redirect back to AI-MMI
+// Redirect back to Migration AI
 header("Location: http://localhost:3000?payment=cancelled");
 exit();
 ?>

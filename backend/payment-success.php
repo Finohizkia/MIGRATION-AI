@@ -60,7 +60,7 @@ try {
         unset($_SESSION['payment_id']);
         unset($_SESSION['amount']);
         
-        // Redirect to AI-MMI with success message
+        // Redirect to Migration AI with success message
         header("Location: http://localhost:3000?payment=success&plan=" . urlencode($plan));
         exit();
     } else {

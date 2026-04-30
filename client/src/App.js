@@ -76,7 +76,7 @@ function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [showDocuments, setShowDocuments] = useState(false);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('ai-mmi-token'));
+  const [token, setToken] = useState(localStorage.getItem('migration-ai-token'));
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const chatEndRef = useRef(null);
   const [isProcessing, setIsProcessing] = useState(false); // Added this line
@@ -102,20 +102,20 @@ function App() {
       }
     } catch (error) {
       console.error('Failed to fetch user profile:', error);
-      localStorage.removeItem('ai-mmi-token');
+      localStorage.removeItem('migration-ai-token');
       setToken(null);
     }
   };
 
   useEffect(() => {
-    const savedChats = localStorage.getItem('ai-mmi-chats');
-    const savedFiles = localStorage.getItem('ai-mmi-files');
+    const savedChats = localStorage.getItem('migration-ai-chats');
+    const savedFiles = localStorage.getItem('migration-ai-files');
     const savedSerpApi = localStorage.getItem('useSerpApi');
     
     if (savedChats) {
       setChatHistory(JSON.parse(savedChats));
     } else if (isAuthenticated) {
-      addMessage('ai', "Welcome to AI-MMI Immigration Assistant! How can I help you with your immigration questions today?");
+      addMessage('ai', "Welcome to Migration AI Immigration Assistant! How can I help you with your immigration questions today?");
     }
     
     if (savedFiles) {
@@ -128,8 +128,8 @@ function App() {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    localStorage.setItem('ai-mmi-chats', JSON.stringify(chatHistory));
-    localStorage.setItem('ai-mmi-files', JSON.stringify(uploadedFiles));
+    localStorage.setItem('migration-ai-chats', JSON.stringify(chatHistory));
+    localStorage.setItem('migration-ai-files', JSON.stringify(uploadedFiles));
     localStorage.setItem('useSerpApi', useSerpApi.toString());
   }, [chatHistory, uploadedFiles, useSerpApi]);
 
@@ -209,7 +209,7 @@ function App() {
       
       if (error.response?.status === 402 && error.response.data.requiresUpgrade) {
         setShowUpgradeModal(true);
-        addMessage('ai', "You've reached your free prompt limit. Please upgrade your subscription to continue using AI-MMI.");
+        addMessage('ai', "You've reached your free prompt limit. Please upgrade your subscription to continue using Migration AI.");
       } else {
         addMessage('ai', "Sorry, I encountered an error processing your request. Please try again later.");
       }
@@ -245,13 +245,13 @@ function App() {
       
       setUser(userData);
       setToken(authToken);
-      localStorage.setItem('ai-mmi-token', authToken);
+      localStorage.setItem('migration-ai-token', authToken);
       setIsAuthenticated(true);
       setShowAuthModal(false);
       
       addMessage('ai', type === 'login' 
         ? "Welcome back! How can I assist with your immigration needs today?" 
-        : "Welcome to AI-MMI! Let's get started with your immigration journey.");
+        : "Welcome to Migration AI! Let's get started with your immigration journey.");
     } catch (error) {
       console.error('Authentication error:', error);
       alert(error.response?.data?.error || 'Authentication failed');
@@ -266,7 +266,7 @@ function App() {
     } finally {
       setUser(null);
       setToken(null);
-      localStorage.removeItem('ai-mmi-token');
+      localStorage.removeItem('migration-ai-token');
       setIsAuthenticated(false);
       setChatHistory([]);
       addMessage('ai', "You have been logged out. Please log in again to access your profile.");
@@ -348,12 +348,7 @@ function App() {
     <div className="app-container">
       <header className="header">
         <div className="header-brand">
-          <img 
-            src="https://i.ibb.co/pjR8wxhR/ai-mmi-logo-dark-background.png" 
-            alt="AI-MMI Logo" 
-            className="header-icon" 
-          />
-          <h1 className="header-title">AI-MMI</h1>
+          <h1 className="header-title">Migration AI</h1>
         </div>
         
         <div className="header-controls">
@@ -454,7 +449,7 @@ function App() {
               <span className="sidebar-icon"></span> My documents
             </button>
             <button className="sidebar-item">
-              <span className="sidebar-icon"></span> AI-MMI's recommendations
+              <span className="sidebar-icon"></span> Migration AI's recommendations
             </button>
             
             <div className="promo-banner">
@@ -539,7 +534,7 @@ function App() {
               <div className="chat-history">
                 {chatHistory.length === 0 ? (
                   <div className="welcome-message">
-                    <h2>Welcome to AI-MMI Immigration Assistant</h2>
+                    <h2>Welcome to Migration AI Immigration Assistant</h2>
                     <p>Ask me anything about visas, immigration processes, or upload your documents for analysis.</p>
                     <p>Current language: {LANGUAGES[currentLanguage].flag} {LANGUAGES[currentLanguage].name}</p>
                     {!isAuthenticated && (
@@ -643,7 +638,7 @@ function App() {
                     }}
                     placeholder={isAuthenticated 
                       ? `Type your question in ${LANGUAGES[currentLanguage].name}...` 
-                      : 'Please sign in to use AI-MMI...'
+                      : 'Please sign in to use Migration AI...'
                     }
                     rows={3}
                     disabled={!isAuthenticated}
@@ -672,7 +667,7 @@ function App() {
               </button>
             </div>
             <div className="hybrid-plan-body">
-              <p>You've used all your free prompts. Upgrade your subscription to continue using AI-MMI.</p>
+              <p>You've used all your free prompts. Upgrade your subscription to continue using Migration AI.</p>
               
               <div className="plan-cards">
                 <div className="plan-card plan-card-basic">
@@ -682,7 +677,7 @@ function App() {
                   </div>
                   <div className="plan-card-body">
                     <ul className="plan-features">
-                      <li><i className="fas fa-check"></i> Unlimited online consultation with AI-MMI for 3 months</li>
+                      <li><i className="fas fa-check"></i> Unlimited online consultation with Migration AI for 3 months</li>
                       <li><i className="fas fa-check"></i> Document analysis (up to 5/month)</li>
                       <li><i className="fas fa-check"></i> Basic visa eligibility check</li>
                       <li><i className="fas fa-times"></i> No migration agent access</li>
@@ -803,7 +798,7 @@ function App() {
                   </div>
                   <div className="plan-card-body">
                     <ul className="plan-features">
-                      <li><i className="fas fa-check"></i> Unlimited online consultation with AI-MMI for 3 months</li>
+                      <li><i className="fas fa-check"></i> Unlimited online consultation with Migration AI for 3 months</li>
                       <li><i className="fas fa-check"></i> Document analysis (up to 5/month)</li>
                       <li><i className="fas fa-check"></i> Basic visa eligibility check</li>
                       <li><i className="fas fa-times"></i> No migration agent access</li>

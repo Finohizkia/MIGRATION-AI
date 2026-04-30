@@ -64,7 +64,7 @@ if (array_key_exists($plan, $planNames) && $amount > 0 && !empty($userId) && !em
     // Create payment items array
     $items = [
         [
-            'name' => "AI-MMI {$planNames[$plan]} Subscription",
+            'name' => "Migration AI {$planNames[$plan]} Subscription",
             'price' => $amount,
             'quantity' => 1
         ]
@@ -101,7 +101,7 @@ if (array_key_exists($plan, $planNames) && $amount > 0 && !empty($userId) && !em
     exit();
 } else {
     // Invalid parameters
-    header("Location: /ai-mmi?error=invalid_payment_parameters");
+    header("Location: /migration-ai?error=invalid_payment_parameters");
     exit();
 }
 ?>
